@@ -1,0 +1,77 @@
+/*
+Empty Ascending Stack
+*/
+
+#include <stdio.h>
+
+void push(int data, int *sp)
+{
+    *sp = data;
+}
+
+int pop(int *sp)
+{
+    int data = *sp;
+    *sp = 0;
+    return data;
+}
+
+void print(int a[5])
+{
+    printf("\nStack\n%d\n%d\n%d\n%d\n%d\n", a[4], a[3], a[2], a[1], a[0]);
+}
+
+int main()
+{
+    int a[5] = {0, 0, 0, 0, 0};
+    int *sp = a;
+    int *empty = sp;
+    int *full = &a[4];
+    full++;
+    int option = 0;
+    int data;
+    while (option != 4)
+    {
+        printf("\n\n--------MENU--------\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Print\n");
+        printf("4. Exit\n");
+        printf("Enter option : ");
+        scanf("%d", &option);
+        switch (option)
+        {
+        case 1:
+            if (sp != full)
+            {
+                printf("Enter value to push : ");
+                scanf("%d", &data);
+                push(data, sp);
+                sp++;
+            }
+            else
+            {
+                printf("stack full\n");
+            }
+            break;
+
+        case 2:
+            if (sp == empty)
+            {
+                printf("Empty Stack");
+            }
+            else
+            {
+                sp--;
+                printf("Popped data : %d\n", pop(sp));
+            }
+            break;
+
+        case 3:
+            print(a);
+            break;
+        }
+    }
+
+    return 0;
+}
